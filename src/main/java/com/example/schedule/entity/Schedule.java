@@ -2,6 +2,7 @@ package com.example.schedule.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Schedule {
 
+    @Setter
     // 고유 식별자
     private Long id;
     // 할일
@@ -22,13 +24,11 @@ public class Schedule {
     // 수정일
     private LocalDateTime updatedAt;
 
-    // 생성자
-    public Schedule (Long id, String task, String name, String password) {
-        this.id = id;
+    public Schedule (String task, String name, String password, LocalDateTime createdAt) {
         this.task = task;
         this.name = name;
         this.password = password;
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = this.createdAt;
+        this.createdAt = createdAt;
+        this.updatedAt = createdAt;
     }
 }
