@@ -4,5 +4,5 @@ import com.example.schedule.entity.Schedule;
 
 public interface ScheduleRepository {
 
-    Schedule saveSchedule (Schedule schedule);
+    Schedule saveSchedule(Schedule schedule);
 }

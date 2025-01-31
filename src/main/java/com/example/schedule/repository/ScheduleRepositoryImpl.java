@@ -18,7 +18,6 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
         schedule.setId(scheduleId);
 
         scheduleMap.put(scheduleId, schedule);
-
         return schedule;
     }
 }
