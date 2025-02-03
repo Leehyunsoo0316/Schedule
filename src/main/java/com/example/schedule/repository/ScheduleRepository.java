@@ -11,5 +11,5 @@ public interface ScheduleRepository {
     Optional<Schedule> findById(Long id); // 단건 조회
     List<Schedule> findAll(); // 다건 조회
     Schedule update(Long id, String task, String name, String password); // 수정
-    void deleteById(Long id); // 삭제
+    void deleteById(Long id, String password); // 삭제
 }

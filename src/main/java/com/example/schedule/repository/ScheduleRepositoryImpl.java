@@ -134,7 +134,24 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Long id, String password) {
+        Schedule existingSchedule = jdbcTemplate.queryForObject(
+                "SELECT * FROM schedule WHERE id = ?",
+                (rs, rowNum) -> new Schedule(
+                        rs.getLong("id"),
+                        rs.getString("task"),
+                        rs.getString("name"),
+                        rs.getString("password"),
+                        rs.getTimestamp("created_at").toLocalDateTime(),
+                        rs.getTimestamp("updated_at").toLocalDateTime()
+                ),
+                id
+        );
+
+        if (!existingSchedule.getPassword().equals(password)) {
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+        }
+
         jdbcTemplate.update(
                 "DELETE FROM schedule WHERE id = ?",
                 id

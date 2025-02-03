@@ -77,7 +77,7 @@ public class ScheduleService {
     }
 
     @Transactional
-    public void deleteScheduleById (Long scheduleID) {
-        scheduleRepository.deleteById(scheduleID);
+    public void deleteScheduleById (Long scheduleID, String password) {
+        scheduleRepository.deleteById(scheduleID, password);
     }
 }
