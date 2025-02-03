@@ -7,11 +7,10 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -105,13 +104,13 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
         }
 
         // 비밀번호가 일치하면 수정
-        LocalDate updatedAt = LocalDate.now();
+        LocalDateTime updatedAt = LocalDateTime.now();
 
         int updatedRows = jdbcTemplate.update(
                 "update schedule set task = ?, name = ?, updated_at = ? where id = ?",
                 task,
                 name,
-                Date.valueOf(updatedAt),
+                Timestamp.valueOf(updatedAt),
                 id
         );
 
