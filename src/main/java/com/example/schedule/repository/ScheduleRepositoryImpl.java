@@ -79,15 +79,44 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
     }
 
     @Override
-    public Schedule updateTask(Long id, String task) {
+    public Schedule update(Long id, String task, String name, String password) {
+        // 비밀번호 확인
+        Schedule existingSchedule = jdbcTemplate.queryForObject(
+                "select * from schedule where id = ?",
+                (rs, rowNum) -> new Schedule(
+                        rs.getLong("id"),
+                        rs.getString("task"),
+                        rs.getString("name"),
+                        rs.getString("password"),
+                        rs.getDate("created_at").toLocalDate(),
+                        rs.getDate("updated_at").toLocalDate()
+                ),
+                id
+        );
+
+        if (existingSchedule == null) {
+            throw new IllegalArgumentException("ID가 " + id + "인 일정이 존재하지 않습니다.");
+        }
+
+        // 비밀번호가 일치하지 않으면 예외 처리
+        if (!existingSchedule.getPassword().equals(password)) {
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+        }
+
+        // 비밀번호가 일치하면 수정
         LocalDate updatedAt = LocalDate.now();
 
-        jdbcTemplate.update(
-                "update schedule set task = ?, updated_at = ? where id = ?",
+        int updatedRows = jdbcTemplate.update(
+                "update schedule set task = ?, name = ?, updated_at = ? where id = ?",
                 task,
+                name,
                 Date.valueOf(updatedAt),
                 id
         );
+
+        if (updatedRows == 0) {
+            throw new IllegalArgumentException("ID가 " + id + "인 일정이 존재하지 않습니다.");
+        }
 
         return jdbcTemplate.queryForObject(
                 "select * from schedule where id = ?",

@@ -65,7 +65,7 @@ public class ScheduleService {
 
     @Transactional
     public ScheduleResponseDto updateSchedule(Long scheduleId, ScheduleRequestDto dto) {
-        Schedule schedule = scheduleRepository.updateTask(scheduleId, dto.getTask());
+        Schedule schedule = scheduleRepository.update(scheduleId, dto.getTask(), dto.getName(), dto.getPassword());
 
         return new ScheduleResponseDto(
                 schedule.getId(),
