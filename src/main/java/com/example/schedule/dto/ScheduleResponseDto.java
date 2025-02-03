@@ -1,9 +1,8 @@
 package com.example.schedule.dto;
 
-import com.example.schedule.entity.Schedule;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 public class ScheduleResponseDto {
@@ -14,19 +13,16 @@ public class ScheduleResponseDto {
     private String task;
     // 작성자명
     private String name;
-    // 비밀번호
-    private String password;
     // 작성일
-    private LocalDateTime createdAt;
+    private LocalDate createdAt;
     // 수정일
-    private LocalDateTime updatedAt;
+    private LocalDate updatedAt;
 
-    public ScheduleResponseDto (Schedule schedule) {
-        this.id = schedule.getId();
-        this.task = schedule.getTask();
-        this.name = schedule.getName();
-        this.password = schedule.getPassword();
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = this.createdAt;
+    public ScheduleResponseDto (Long id, String task, String name, LocalDate createdAt, LocalDate updatedAt) {
+        this.id = id;
+        this.task = task;
+        this.name = name;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 }

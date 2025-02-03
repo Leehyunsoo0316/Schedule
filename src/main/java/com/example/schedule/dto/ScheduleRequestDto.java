@@ -2,8 +2,6 @@ package com.example.schedule.dto;
 
 import lombok.Getter;
 
-import java.time.LocalDateTime;
-
 @Getter
 public class ScheduleRequestDto {
 
@@ -13,6 +11,4 @@ public class ScheduleRequestDto {
     private String name;
     // 비밀번호
     private String password;
-    // 작성시간
-    private LocalDateTime createdAt;
 }
