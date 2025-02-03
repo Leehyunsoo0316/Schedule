@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -36,8 +37,8 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
             ps.setString(1, schedule.getTask());
             ps.setString(2, schedule.getName());
             ps.setString(3, schedule.getPassword());
-            ps.setDate(4, Date.valueOf(schedule.getCreatedAt()));
-            ps.setDate(5, Date.valueOf(schedule.getUpdatedAt()));
+            ps.setTimestamp(4, Timestamp.valueOf(schedule.getCreatedAt()));
+            ps.setTimestamp(5, Timestamp.valueOf(schedule.getUpdatedAt()));
             return ps;
         }, keyHolder);
 
@@ -54,8 +55,8 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
                         rs.getLong("id"),
                         rs.getString("task"),
                         rs.getString("name"),
-                        rs.getDate("created_at").toLocalDate(),
-                        rs.getDate("updated_at").toLocalDate()
+                        rs.getTimestamp("created_at").toLocalDateTime(),
+                        rs.getTimestamp("updated_at").toLocalDateTime()
                 ),
                 id
         );
@@ -72,8 +73,8 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
                                 rs.getLong("id"),
                                 rs.getString("task"),
                                 rs.getString("name"),
-                                rs.getDate("created_at").toLocalDate(),
-                                rs.getDate("updated_at").toLocalDate()
+                                rs.getTimestamp("created_at").toLocalDateTime(),
+                                rs.getTimestamp("updated_at").toLocalDateTime()
                         )
         );
     }
@@ -88,8 +89,8 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
                         rs.getString("task"),
                         rs.getString("name"),
                         rs.getString("password"),
-                        rs.getDate("created_at").toLocalDate(),
-                        rs.getDate("updated_at").toLocalDate()
+                        rs.getTimestamp("created_at").toLocalDateTime(),
+                        rs.getTimestamp("updated_at").toLocalDateTime()
                 ),
                 id
         );
@@ -126,8 +127,8 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
                                 rs.getString("task"),
                                 rs.getString("name"),
                                 rs.getString("password"),
-                                rs.getDate("created_at").toLocalDate(),
-                                rs.getDate("updated_at").toLocalDate()
+                                rs.getTimestamp("created_at").toLocalDateTime(),
+                                rs.getTimestamp("updated_at").toLocalDateTime()
                         ),
                 id
         );

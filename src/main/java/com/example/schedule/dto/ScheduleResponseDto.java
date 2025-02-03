@@ -2,7 +2,7 @@ package com.example.schedule.dto;
 
 import lombok.Getter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 public class ScheduleResponseDto {
@@ -14,11 +14,11 @@ public class ScheduleResponseDto {
     // 작성자명
     private String name;
     // 작성일
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
     // 수정일
-    private LocalDate updatedAt;
+    private LocalDateTime updatedAt;
 
-    public ScheduleResponseDto (Long id, String task, String name, LocalDate createdAt, LocalDate updatedAt) {
+    public ScheduleResponseDto (Long id, String task, String name, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.task = task;
         this.name = name;

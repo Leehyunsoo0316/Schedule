@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @AllArgsConstructor
@@ -20,19 +20,19 @@ public class Schedule {
     // 비밀번호
     private String password;
     // 작성일
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
     // 수정일
-    private LocalDate updatedAt;
+    private LocalDateTime updatedAt;
 
     public Schedule (String task, String name, String password) {
         this.task = task;
         this.name = name;
         this.password = password;
-        this.createdAt = LocalDate.now();
-        this.updatedAt = LocalDate.now();
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 
-    public Schedule(long id, String task, String name, String password, LocalDate createdAt, LocalDate updatedAt) {
+    public Schedule(long id, String task, String name, String password, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.task = task;
         this.name = name;
@@ -41,7 +41,7 @@ public class Schedule {
         this.updatedAt = updatedAt;
     }
 
-    public Schedule(long id, String task, String name, LocalDate createdAt, LocalDate updatedAt) {
+    public Schedule(long id, String task, String name, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.task = task;
         this.name = name;
